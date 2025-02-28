@@ -1,5 +1,6 @@
 **Requirements**
 
+- Unix-like operating system (Linux, macOS)
 - MPI implementation (MPICH, Open MPI, etc.)
 - C compiler (gcc, clang, etc.)
 
