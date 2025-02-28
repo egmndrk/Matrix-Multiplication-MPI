@@ -1,3 +1,29 @@
+**Requirements**
+
+- MPI implementation (MPICH, Open MPI, etc.)
+- C compiler (gcc, clang, etc.)
+
+**Building the Project**
+
+```bash
+mpicc -o matrix_mult MatrixMultiplicationV{version}.c
+```
+
+**Running the Program**
+
+```bash
+mpirun -np <num_processes> ./matrix_mult <matrix_size>
+```
+
+Where:
+- `<num_processes>` is the number of MPI processes to use
+- `<matrix_size>` is the dimension of the square matrices
+
+Example:
+```bash
+mpirun -np 4 ./matrix_mult 1000
+```
+
 **Overview**
 
 The two versions of the code differ in broadcasting, scattering, and gathering the data among processes. The first code uses MPI_Bcast to send matrix2 from process 0 to all other processes, whereas the second code does this broadcasting manually using MPI_Send and MPI_Recv. Regarding matrix1 scattering, the first code uses MPI_Scatter to send subparts of matrix1 to all processes. The second code manually scatters with MPI_Send and MPI_Recv, with the help of memcpy to copy data into sub_matrix1 for process 0. For result gathering, the first code uses MPI_Gather to collect all the results in matrix3. On the other hand, the second code manually gathers results with MPI_Send and MPI_Recv, and uses memcpy to copy sub_matrix3 results for process 0 into matrix3.
